@@ -9,17 +9,25 @@ export default function SignIn() {
       <Text style={styles.txtHeader}>Entrar</Text>
       <Text style={styles.txtAny}>Digite seus dados para acessar sua conta!</Text>
      </View>
-     <View style={styles.Content}>
+     <Animatable.View animation='fadeInUp' style={styles.Content}>
       <Text style={styles.txtInput}>Email:</Text>
-      <TextInput styles={styles.input}
+      <TextInput style={styles.input}
       placeholder='seu@email.com.br'
       />
 
       <Text style={ styles.txtInput}>Senha:</Text>
       <TextInput style={styles.input}
-      placeholder="********"
-      />
-     </View>
+      placeholder="********"/>
+
+      <TouchableOpacity style={styles.btnLogin}>
+        <Text style={ styles.txtLogin }>Entrar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={ styles.btnSignIn }>
+        <Text style={ styles.txtSignIn }>Não Possui uma conta? Cadastre-se</Text>
+      </TouchableOpacity>
+
+     </Animatable.View>
     </View>
   )
 }
@@ -34,6 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: "25%",
+    marginBottom: '15%',
   },
 
   txtHeader:{
@@ -52,10 +61,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "#fff",
     paddingTop: 25,
+    borderTopLeftRadius: 55,
+    borderTopRightRadius: 55,
+    padding: 10,
     
   },
 
+  input:{
+    width: '80%',
+    textAlign: 'center',
+    backgroundColor: '#a1a1a1',
+    borderRadius: 25,
+    paddingVertical: '2%',
+  },
+
   txtInput:{
-    alignSelf: 'center',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between'
   }
 })
