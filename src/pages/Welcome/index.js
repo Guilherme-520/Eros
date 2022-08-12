@@ -17,13 +17,14 @@ export default function Welcome() {
         style={{ width: "40%"}}
         resizeMode="contain"
         />
+
       </View>
       <Animatable.View animation="fadeInUp" delay={600} style={styles.options}>
-        <TouchableOpacity onPress={ () => navigation.navigate('SignIn') } style={styles.btnLogin}>
-          <Text style={styles.txtLogin}>Entrar</Text>
+        <TouchableOpacity onPress={ () => navigation.navigate('SignIn') } style={styles.btnSignIn}>
+          <Text style={styles.txtSignIn}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnSignIn}>
+        <TouchableOpacity style={styles.btnSignUp} onPress={()=> navigation.navigate("SignUp")}>
           <Text style={styles.txtSignUp}>Cadastre-se</Text>
         </TouchableOpacity>
       </Animatable.View>
@@ -55,8 +56,8 @@ const styles =StyleSheet.create({
     justifyContent: 'center',
   },
 
-  btnLogin:{
-    backgroundColor: "#3a2f78",
+  btnSignIn:{
+    backgroundColor: "#5142ab",
     marginBottom: '5%',
     borderRadius: 20,
     width: '55%',
@@ -65,7 +66,7 @@ const styles =StyleSheet.create({
     justifyContent: 'center',
   },
 
-  txtLogin:{
+  txtSignIn:{
     color: "#fff",
     fontSize: 25,
     fontWeight: '600'
