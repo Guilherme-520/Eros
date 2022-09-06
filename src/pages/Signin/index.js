@@ -1,14 +1,32 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, Image, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/inputs';
 import  { AntDesign } from '@expo/vector-icons'; 
+import { Foundation } from '@expo/vector-icons';
+
+//import { signInWithEmailAndPassword } from 'firebase/auth'
+//import { initializeApp } from 'firebase/app';
+//import { getFirebaseConfig } from '../../config/firebaseconfig';
+
 
 export default function SignIn() {
 
+  const [email, setEmail ] = useState("")
+  const [senha, setSenha] = useState("")
+  
+
+
+
+
+  useEffect(()=>{
+
+  }, [])
+
   const navigation = useNavigation()
   return (
+    
     <View style={styles.container}>
       <TouchableOpacity onPress={ () => navigation.navigate('Welcome')}>
       <AntDesign style={styles.iconBack}  name="left" size={26} color='white' />
@@ -26,22 +44,43 @@ export default function SignIn() {
       <Text style={styles.txtHeader}>Entrar</Text>
       <Text style={styles.txtAny}>Digite seus dados para acessar sua conta!</Text>
      </View>
+     
      <Animatable.View animation='fadeInUp' style={styles.Content}>
-     <Input iconName={"envelope"} keyboardType='email-address' placeholder='Email' />
-     <Input iconName={"lock"} secureTextEntry placeholder='Senha'/>
+     <Input iconName={"envelope"} keyboardType='email-address' placeholder='Email' autoCapitalize="none" onChangeText={(text)=> setEmail(text)} value={email} />
+     <Input secureTextEntry placeholder='Senha'autoCapitalize="none" onChangeText={(text)=>setSenha(text)} value={senha} />
 
-     <TouchableOpacity style={styles.btnSignIn}>
+     {errorLogin === true 
+     ? 
+     <View style={styles.alert}>
+      <Foundation name="alert" size={24} color="black" />
+      <Text style={styles.txtAlert}>Email ou senha invalido </Text>
+     </View>
+      :
+       <View/> }
+
+       {email === "" || senha === "" 
+       ?
+       <TouchableOpacity style={styles.btnSignIn} disabled={true} >
       <Text style={styles.txtSignIn}>
       Entrar
       </Text>
      </TouchableOpacity>
-     <TouchableOpacity style={styles.btnSignUp} onPress={()=> navigation.navigate("SignUp")}>
-      <Text style={styles.txtSignUp}>
-      Não tem conta ainda? Cadastre-se!
+       :
+       <TouchableOpacity style={styles.btnSignIn} onPress={login}>
+      <Text style={styles.txtSignIn}>
+      Entrar
       </Text>
      </TouchableOpacity>
+      }
+     
+
+     
+
+     
+
      </Animatable.View>
     </View>
+    
   )
 }
 
@@ -77,7 +116,7 @@ image:{
   },
 
   txtAny:{
-    color: "#a1a1a1",
+    color: "#fff",
   },
 
   Content:{
@@ -94,13 +133,15 @@ image:{
   btnSignIn:{
     backgroundColor: "#5142ab",
     marginBottom: '5%',
-    borderRadius: 20,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 4,
     marginTop: "5%",
     alignItems: 'center',
     justifyContent: 'center',
+    width: "100%",
+    borderRadius: 10,
   },
+
 
   txtSignIn:{
     color: '#fff',
@@ -108,9 +149,6 @@ image:{
     fontWeight: 'bold'
   },
 
-  txtSignUp:{
-    color: "#a1a1a1",
-    fontSize: 15,
-    fontWeight: '400'
-  }
 })
+
+//const firebaseApp = initializeApp(getFirebaseConfig())

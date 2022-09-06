@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 40,
         paddingRight:40,
-        height: 35,
+        height: 40,
         margin: 10,
         backgroundColor: '#fff',
         borderWidth: 1,
@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
 
     icon:{
         position: 'absolute',
-        left:28,
-        top:14,
+        right:28,
+        top:18,
     },
     iconSec:{
         position: 'absolute',
         right:28,
-        top:14,
+        top:18,
     },
 
 });

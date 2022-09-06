@@ -59,7 +59,7 @@ const styles =StyleSheet.create({
   btnSignIn:{
     backgroundColor: "#5142ab",
     marginBottom: '5%',
-    borderRadius: 20,
+    borderRadius: 10,
     width: '55%',
     height: '18%',
     alignItems: 'center',
