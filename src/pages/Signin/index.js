@@ -6,9 +6,9 @@ import Input from '../../components/inputs';
 import  { AntDesign } from '@expo/vector-icons'; 
 import { Foundation } from '@expo/vector-icons';
 
-//import { signInWithEmailAndPassword } from 'firebase/auth'
-//import { initializeApp } from 'firebase/app';
-//import { getFirebaseConfig } from '../../config/firebaseconfig';
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../config/firebaseconfig'
+
 
 
 export default function SignIn() {
@@ -17,7 +17,18 @@ export default function SignIn() {
   const [senha, setSenha] = useState("")
   
 
-
+  async function login(){
+    await signInWithEmailAndPassword( auth, email, senha)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert("Logado com sucesso")
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(error.message, error.code)
+    });
+  }
 
 
   useEffect(()=>{
@@ -49,14 +60,6 @@ export default function SignIn() {
      <Input iconName={"envelope"} keyboardType='email-address' placeholder='Email' autoCapitalize="none" onChangeText={(text)=> setEmail(text)} value={email} />
      <Input secureTextEntry placeholder='Senha'autoCapitalize="none" onChangeText={(text)=>setSenha(text)} value={senha} />
 
-     {errorLogin === true 
-     ? 
-     <View style={styles.alert}>
-      <Foundation name="alert" size={24} color="black" />
-      <Text style={styles.txtAlert}>Email ou senha invalido </Text>
-     </View>
-      :
-       <View/> }
 
        {email === "" || senha === "" 
        ?

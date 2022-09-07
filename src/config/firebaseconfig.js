@@ -1,4 +1,5 @@
-
+import {initializeApp} from 'firebase/app'
+import { getAuth } from 'firebase/auth';
 const firebaseConfig = {
   apiKey: "AIzaSyCjBm7GtXu9MKFpsoSVeonHmOcbNFJsaM8",
   authDomain: "eros-64221.firebaseapp.com",
@@ -10,13 +11,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
+const app = initializeApp(firebaseConfig);
 
-export function getFirebaseConfig() {
-  if (!firebaseConfig || !firebaseConfig.apiKey) {
-    throw new Error('No Firebase configuration object provided.' + '\n' +
-    'Add your web app\'s configuration object to firebase-config.js');
-  } else {
-    return config;
-  }
-}
+export const auth = getAuth(app)
  

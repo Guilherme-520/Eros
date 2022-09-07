@@ -4,10 +4,8 @@ import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/inputs';
 import  { AntDesign } from '@expo/vector-icons'; 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { enableExpoCliLogging } from 'expo/build/logs/Logs';
-//import { initializeApp } from 'firebase/app';
-import { getFirebaseConfig } from '../../config/firebaseconfig';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../../config/firebaseconfig';
 
 export default function SignUp() {
 
@@ -15,7 +13,6 @@ export default function SignUp() {
   const [senha, setSenha ] = useState("")
 
   
-  const auth = getAuth();
   async function register(){
     await createUserWithEmailAndPassword(auth, email, senha)
     .then((userCredential) => {
@@ -145,4 +142,3 @@ const styles = StyleSheet.create({
 
 })
 
-const firebaseApp = initializeApp(getFirebaseConfig())
