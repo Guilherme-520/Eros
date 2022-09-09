@@ -1,5 +1,5 @@
-import {initializeApp} from 'firebase/app'
-import { getAuth } from 'firebase/auth';
+import {initializeApp} from 'firebase/app';
+
 const firebaseConfig = {
   apiKey: "AIzaSyCjBm7GtXu9MKFpsoSVeonHmOcbNFJsaM8",
   authDomain: "eros-64221.firebaseapp.com",
@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
-const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app)
+export const firebase = initializeApp(firebaseConfig);
+
  

@@ -13,8 +13,8 @@ export default function Welcome() {
       <View style={styles.image}>
         <Animatable.Image
         animation="flipInY"
-        source={require('../../assets/logo.png')}
-        style={{ width: "40%"}}
+        source={require('../../assets/Eros.png')}
+        style={{ width: "60%"}}
         resizeMode="contain"
         />
 

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
 
     input:{
-        width: '90%',
+        width: '100%',
         flex: 1,
         paddingLeft: 40,
         paddingRight:40,
