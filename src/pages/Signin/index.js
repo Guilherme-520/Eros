@@ -21,7 +21,7 @@ const auth = getAuth(firebase)
     await signInWithEmailAndPassword( auth, email, senha)
     .then((userCredential) => {
       const user = userCredential.user;
-      alert("Logado com sucesso")
+      navigation.navigate("Home")
     })
     .catch((error) => {
       const errorCode = error.code;
