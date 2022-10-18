@@ -11,23 +11,35 @@ export default function SignUp() {
 
   const [email, SetEmail ] = useState("")
   const [senha, setSenha ] = useState("")
+  const [senha2, setSenha2 ] = useState("")
+  const [name, setName ] = useState("")
 
   const auth = getAuth(firebase)
-  async function register(){
-    await createUserWithEmailAndPassword(auth, email, senha)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      alert("usuario criado com sucesso")
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      console.log(errorCode)
-      // ..
-    });
+
+
+  function register(){
+    if(senha === senha2){
+
+      createUserWithEmailAndPassword(auth, email, senha)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        alert("usuario criado com sucesso")
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        console.log(errorCode)
+        // ..
+      });
+    }
+    else{
+      setSenha("")
+      setSenha2("")
+      return alert("As senhas devem ser iguais!")
+    }
   }
 
   
@@ -57,10 +69,12 @@ export default function SignUp() {
       <Text style={styles.txtAny}>Crie sua conta e comece hoje sua mudança!</Text>
      </View>
      <Animatable.View animation='fadeInUp' style={styles.Content}>
+      <Input iconName={"user"} placeholder="Nome de Usuario" autoCapitalize onChangeText={(text)=>setName(text)} value={name} />
      <Input iconName={"envelope"} keyboardType="email-address" placeholder="Email" autoCapitalize='none' onChangeText={(text)=>SetEmail(text)} value={email} />
      <Input secureTextEntry placeholder="Senha" autoCapitalize='none' autoCorrect={false} onChangeText={(text)=>setSenha(text)} value={senha} />
+     <Input secureTextEntry placeholder="Senha" autoCapitalize='none' autoCorrect={false} onChangeText={(text)=>setSenha2(text)} value={senha2} />
     {
-      email === "" || senha === "" 
+      email === "" || senha === "" || name === ""
       ?
     
       <TouchableOpacity style={styles.btnSignUp} disabled={true} >
@@ -78,37 +92,6 @@ export default function SignUp() {
       </TouchableOpacity>
       
     }
-    <View style={styles.containerLine}>
-    <View style={styles.line}>
-    </View>
-    <Text style={styles.textOthers}>Ou criei uma conta com</Text>
-    <View style={styles.line}></View>
-    </View>
-    <View style={styles.buttons}>
-    <TouchableOpacity style={styles.googleButtom}  >
-      <View style={styles.containerButtons}>
-      <Image 
-      style={styles.googleImg}
-      resizeMode="contain"
-      source={require("../../assets/google-icon.png")}
-      />
-      <View style={styles.bar}></View>
-      <Text style={styles.googleTxt}>Google</Text>
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.facebookButtom}>
-    <View style={styles.containerButtons}>
-      <Image 
-      style={styles.facebookImg}
-      resizeMode="contain"
-      source={require("../../assets/facebook.png")}
-      />
-       <View style={styles.bar}></View>
-      <Text style={styles.facebookTxt}>Facebook</Text>
-    </View>
-    </TouchableOpacity>
-    </View>
-  
      </Animatable.View>
      </View>
 

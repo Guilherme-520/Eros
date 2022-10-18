@@ -1,12 +1,15 @@
 import { View, Text,TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
-import firebase from '../../config/firebaseconfig';
 import { getAuth, signOut } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 
 
 
-const auth = getAuth()
+
+export default function Home() {
+
+  
+  const auth = getAuth()
 const navigation = useNavigation()
 
 function LogOut(){
@@ -16,7 +19,6 @@ function LogOut(){
         console.log(error.message)
       });
 }
-export default function Home() {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.btnLogOut} onPress={LogOut}>

@@ -17,8 +17,8 @@ export default function SignIn() {
   
 const auth = getAuth(firebase)
 
-  async function login(){
-    await signInWithEmailAndPassword( auth, email, senha)
+  function login(){
+    signInWithEmailAndPassword( auth, email, senha)
     .then((userCredential) => {
       const user = userCredential.user;
       navigation.navigate("Home")
@@ -30,29 +30,6 @@ const auth = getAuth(firebase)
     });
   }
 
-  async function googleSignIn(){
-    const provider = new GoogleAuthProvider();
-   const resul = await signInWithPopup(provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-        console.log(resul);
-        console.log(result)
-        // ...
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorMessage, errorCode);
-        // ...
-      });
-  }
 
   useEffect(()=>{
 
@@ -96,38 +73,6 @@ const auth = getAuth(firebase)
       </Text>
      </TouchableOpacity>
       }
-     
-     <View style={styles.containerLine}>
-    <View style={styles.line}>
-    </View>
-    <Text style={styles.textOthers}>Ou Entre com</Text>
-    <View style={styles.line}></View>
-    </View>
-<View style={styles.buttons}>
-    <TouchableOpacity style={styles.googleButtom} onPress={googleSignIn} >
-      <View style={styles.containerButtons}>
-      <Image 
-      style={styles.googleImg}
-      resizeMode="contain"
-      source={require("../../assets/google-icon.png")}
-      />
-      <View style={styles.bar}></View>
-      <Text style={styles.googleTxt}>Google</Text>
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.facebookButtom}>
-    <View style={styles.containerButtons}>
-      <Image 
-      style={styles.facebookImg}
-      resizeMode="contain"
-      source={require("../../assets/facebook.png")}
-      />
-       <View style={styles.bar}></View>
-      <Text style={styles.facebookTxt}>Facebook</Text>
-    </View>
-    </TouchableOpacity>
-    </View>
-  
 
      </Animatable.View>
     </KeyboardAvoidingView>
@@ -227,50 +172,6 @@ image:{
     width: "100%",
   },
 
-  googleButtom:{
-    
-    borderColor: "black",
-    borderWidth: 2,
-    width: "100%",
-    borderRadius: 10,
-    paddingHorizontal: 4,
-    paddingVertical: 15,
-    marginVertical: 15,
-  },
-  facebookButtom:{
-    backgroundColor: "#3B5998",
-    width: "100%",
-    borderRadius: 10,
-    paddingHorizontal: 4,
-    paddingVertical: 15,
-  },
-
-  bar:{
-    backgroundColor: "#a1a1a1",
-    height: "100%",
-    width: 1,
-    marginHorizontal: 5,
-  },
-  facebookTxt:{
-    color: "#fff",
-    fontWeight: '500',
-    fontSize: 20,
-  },
-  googleTxt:{
-    color: "black",
-    fontWeight: '500',
-    fontSize: 20,
-  },
   
-  googleImg:{
-    position: 'absolute',
-    right: 40,
-    height: "100%",
-  },
-  facebookImg:{
-    position: 'absolute',
-    right: 40,
-    height: 45,
-  },
 })
 
