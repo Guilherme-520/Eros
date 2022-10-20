@@ -6,7 +6,7 @@ export default function Hair() {
   return (
     <View>
       <Text>Perguntas sobre cabelo</Text>
-      <Radio/>
+      <Radio options={['1','2','3']} onChangeSelected={(opt)=>alert(opt)}/>
     </View>
   )
 }

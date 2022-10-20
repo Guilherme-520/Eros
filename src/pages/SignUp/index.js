@@ -24,7 +24,7 @@ export default function SignUp() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        alert("usuario criado com sucesso")
+        navigation.navigate("Hair")
         // ...
       })
       .catch((error) => {
