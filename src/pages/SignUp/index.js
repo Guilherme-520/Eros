@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity, StyleSheet,Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet,Image, } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
 import Input from '../../components/inputs';
 import  { AntDesign } from '@expo/vector-icons'; 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -68,7 +68,7 @@ export default function SignUp() {
      <View style={styles.header}>
       <Text style={styles.txtAny}>Crie sua conta e comece hoje sua mudança!</Text>
      </View>
-     <Animatable.View animation='fadeInUp' style={styles.Content}>
+     <Animatable.View  animation='fadeInUp' style={styles.Content}>
       <Input iconName={"user"} placeholder="Nome de Usuario" autoCapitalize onChangeText={(text)=>setName(text)} value={name} />
      <Input iconName={"envelope"} keyboardType="email-address" placeholder="Email" autoCapitalize='none' onChangeText={(text)=>SetEmail(text)} value={email} />
      <Input secureTextEntry placeholder="Senha" autoCapitalize='none' autoCorrect={false} onChangeText={(text)=>setSenha(text)} value={senha} />
