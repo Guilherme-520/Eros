@@ -1,31 +1,17 @@
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView  } from 'react-native';
 import React,{useState} from 'react';
-import Radio from '../../components/Radio';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
+import RadioList from '../../components/RadioList';
 
-export default function Hair() {
+export default function Crespo() {
 
 
 
   const [selected, setSelected ] = useState(null)
-  const [hair, setHair ] = useState("")
+  const [type, setType ] = useState("")
 
   const navigation = useNavigation()
-
-  function next(){
-    if(hair === "Liso"){
-      navigation.navigate("Liso")
-    }else if(hair === "Ondulado"){
-      navigation.navigate("Ondulado")
-    }
-    else if(hair === "Cacheado"){
-      navigation.navigate("Cacheado")
-    }
-    else if(hair === "Crespo"){
-      navigation.navigate("Crespo")
-    }
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,21 +19,21 @@ export default function Hair() {
         <Text style={styles.Question}>Qual seu tipo de cabelo?</Text>
       </View>
       <View styles={styles.content}>  
-        <Radio 
+        <RadioList 
         selected={selected}
-        options={['Liso', 'Ondulado', 'Cacheado', 'Crespo']} 
+        options={['D1', 'D2', 'D3', 'D4']} 
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);
-            setHair(opt);
+            setType(opt);
           
           }}
           />
       </View>
       <View style={styles.btns}>
         
-        <TouchableOpacity onPress={()=>{}} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={next} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("Hair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
      

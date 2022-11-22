@@ -31,8 +31,8 @@ export default function Skins(){
       
       <View style={styles.btns}>
         
-        <TouchableOpacity onPress={()=>navigation.navigate("Hair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("Skins")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemSkin")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
 
@@ -75,31 +75,33 @@ const styles = StyleSheet.create({
     },
 
     btns:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: 10,
-      },
-    
-      btnNext:{
-        backgroundColor: '#5142ab',
-        width: 80,
-        height: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 5,
-        borderRadius: 100,
-        
-      },
-      btnPrevius:{
-        backgroundColor: '#5142ab',
-        width: 80,
-        height: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 5,
-        borderRadius: 100,
-        
-      },
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      margin: 10,
+    },
+  
+    btnNext:{
+      backgroundColor: '#5142ab',
+      width: 80,
+      height: 80,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: '60%',
+      padding: 5,
+      borderRadius: 100,
+      
+    },
+    btnPrevius:{
+      backgroundColor: '#5142ab',
+      width: 80,
+      height: 80,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: '60%',
+      padding: 5,
+      borderRadius: 100,
+      
+    },
   
   })
