@@ -16,12 +16,12 @@ export default function ProblemHair() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.txtBack}>
-        <Text style={styles.Question}>Qual problema com cabelo?</Text>
+        <Text style={styles.Question}>Qual o estado do seu cabelo?</Text>
       </View>
       <View styles={styles.content}>  
         <Radio
         selected={selected}
-        options={['Hidratar', 'Nutrir', 'Reconstruir']} 
+        options={['Saudável', 'Não tão danificado', 'Muito Danificado']} 
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);

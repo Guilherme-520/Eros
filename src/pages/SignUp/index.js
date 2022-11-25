@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet,Image, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet,Image, KeyboardAvoidingView, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
@@ -6,6 +6,8 @@ import Input from '../../components/inputs';
 import  { AntDesign } from '@expo/vector-icons'; 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebase from '../../config/firebaseconfig';
+import { Platform } from 'react-native-web';
+import {addDoc, collection, getFirestore} from 'firebase/firestore';
 
 export default function SignUp() {
 
@@ -15,10 +17,13 @@ export default function SignUp() {
   const [name, setName ] = useState("")
 
   const auth = getAuth(firebase)
+  const db = getFirestore(firebase)
 
 
   function register(){
     if(senha === senha2){
+
+      createUser();
 
       createUserWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
@@ -40,6 +45,13 @@ export default function SignUp() {
       setSenha2("")
       return alert("As senhas devem ser iguais!")
     }
+  }
+
+  async function createUser(){
+    await addDoc(collection(db, 'Users'),{
+      name,
+      email,
+    });
   }
 
   
@@ -68,11 +80,13 @@ export default function SignUp() {
      <View style={styles.header}>
       <Text style={styles.txtAny}>Crie sua conta e comece hoje sua mudança!</Text>
      </View>
-     <Animatable.View  animation='fadeInUp' style={styles.Content}>
-      <Input iconName={"user"} placeholder="Nome de Usuario" autoCapitalize onChangeText={(text)=>setName(text)} value={name} />
+     <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'height'} KeyboardVerticalOffset={80} animation='fadeInUp' style={styles.Content}>
+      <ScrollView style={{width: '100%'}}>
+              <Input iconName={"user"} placeholder="Nome de Usuario" autoCapitalize onChangeText={(text)=>setName(text)} value={name} />
      <Input iconName={"envelope"} keyboardType="email-address" placeholder="Email" autoCapitalize='none' onChangeText={(text)=>SetEmail(text)} value={email} />
      <Input secureTextEntry placeholder="Senha" autoCapitalize='none' autoCorrect={false} onChangeText={(text)=>setSenha(text)} value={senha} />
      <Input secureTextEntry placeholder="Senha" autoCapitalize='none' autoCorrect={false} onChangeText={(text)=>setSenha2(text)} value={senha2} />
+    
     {
       email === "" || senha === "" || name === ""
       ?
@@ -92,7 +106,8 @@ export default function SignUp() {
       </TouchableOpacity>
       
     }
-     </Animatable.View>
+    </ScrollView>
+     </KeyboardAvoidingView>
      </View>
 
   )

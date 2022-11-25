@@ -3,6 +3,8 @@ import React,{useState} from 'react';
 import Radio from '../../components/Radio';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
+import {addDoc, collection, getFirestore} from 'firebase/firestore';
+import firebase from '../../config/firebaseconfig';
 
 export default function Hair() {
 
@@ -13,7 +15,13 @@ export default function Hair() {
 
   const navigation = useNavigation()
 
+  const db = getFirestore(firebase);
+
+  
+
   function next(){
+
+    classHair();
     if(hair === "Liso"){
       navigation.navigate("Liso")
     }else if(hair === "Ondulado"){
@@ -25,6 +33,12 @@ export default function Hair() {
     else if(hair === "Crespo"){
       navigation.navigate("Crespo")
     }
+  }
+
+  async function classHair(){
+     await addDoc(collection(db, 'infoHair'),{
+      Classificacao: hair
+    });
   }
 
   return (

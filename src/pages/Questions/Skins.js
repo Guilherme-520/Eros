@@ -19,7 +19,7 @@ export default function Skins(){
       <View styles={styles.content}>  
         <Radio 
         selected={selected}
-        options={['Seca', 'Oliosa', 'Mista']} 
+        options={['Seca', 'Oleosa', 'Mista']} 
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);

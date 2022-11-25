@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity,  } from 'react-native'
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { AntDesign } from '@expo/vector-icons';
+import { cabeloLiso } from './data';
+import { map } from '@firebase/util';
 
 const RadioList = ({
     options = [],
@@ -10,36 +12,39 @@ const RadioList = ({
     selected,
 }) => {
 
+    const [dropb, setDrop] = useState(false)
+
 
     function drop(){
-        if (selected) {
-            setView(!view)
-        }
+        setDrop(!dropb)
+       
     }
 
-    const [view, setView] = useState()
+   
    
   return (
-    <Animatable.View animation={'fadeInUp'} style={ styles.Container}>
-    {options.map((opt, index)=>(
-        <TouchableOpacity onPress={(()=>onChangeSelected(opt, index))} style={[styles.optContainer, {borderColor: selected === index ? "#5142ab" : "#444"}]}>
-            <View style={[styles.radio, {borderColor: selected === index ? "#5142ab" : "#444"}]}>
-                { selected == index && <View style={styles.innerRadio}/> }
-                
-            </View>
-            <View style={styles.containerTxt}>
-                <Text style={[styles.textOpc, {color: selected === index ? "#5142ab" : "#444"}, {borderColor: selected === index ? "#5142ab" : "#444"} ]} >{opt}</Text>
+    <><Animatable.View animation={'fadeInUp'} style={styles.Container}>
+          {options.map((opt, index) => (
+              <View>
+                  <TouchableOpacity onPress={(() => onChangeSelected(opt, index))} style={[styles.optContainer, { borderColor: selected === index ? "#5142ab" : "#444" }]}>
+                      <View style={[styles.radio, { borderColor: selected === index ? "#5142ab" : "#444" }]}>
+                          {selected == index && <View style={styles.innerRadio}></View>}
 
-                
-                
-            <TouchableOpacity style={styles.dropButton} onPress={drop} ><AntDesign name={view ? "downcircleo" : "upcircleo"} size={30} color={ selected === index ? "#5142ab" : "black"} /></TouchableOpacity>
-            </View>
+                      </View>
+                      <View style={styles.containerTxt}>
+                          <Text style={[styles.textOpc, { color: selected === index ? "#5142ab" : "#444" }, { borderColor: selected === index ? "#5142ab" : "#444" }]}>{opt}</Text>
 
-        </TouchableOpacity>
-    ))}
-       
-        
+                          <TouchableOpacity style={styles.dropButton} onPress={drop}><AntDesign name={dropb ? "downcircleo" : "upcircleo"} size={35} color={selected === index ? "#5142ab" : "black"} /></TouchableOpacity>
+
+                      </View>
+
+
+                  </TouchableOpacity>
+              </View>
+          ))}
       </Animatable.View>
+      <View><Text>{dropb && teste}</Text></View></>
+      
   )
 }
 

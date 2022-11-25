@@ -3,6 +3,9 @@ import React,{useState} from 'react';
 import RadioList from '../../components/RadioList';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
+import { cabeloLiso } from '../../components/data'
+import {addDoc, collection, getFirestore} from 'firebase/firestore';
+import firebase from '../../config/firebaseconfig';
 
 export default function Liso() {
 
@@ -13,7 +16,14 @@ export default function Liso() {
 
   const navigation = useNavigation()
 
-  
+  const db = getFirestore(firebase);
+
+  async function next(){
+    await addDoc(collection(db, 'infoHair'),{
+      Grossura: type
+    });
+    navigation.navigate("ProblemHair")
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,12 +40,13 @@ export default function Liso() {
             setType(opt);
           
           }}
+          
           />
       </View>
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("Hair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={next} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
      

@@ -11,6 +11,8 @@ export default function Cacheado() {
   const [selected, setSelected ] = useState(null)
   const [type, setType ] = useState("")
 
+
+
   const navigation = useNavigation()
 
   return (
@@ -29,6 +31,7 @@ export default function Cacheado() {
           
           }}
           />
+          
       </View>
       <View style={styles.btns}>
         
