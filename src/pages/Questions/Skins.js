@@ -4,10 +4,14 @@ import Radio from '../../components/Radio';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Skins(){
+export default function Skins({route}){
 
     const [selected, setSelected ] = useState(null)
     const [skin, setSkin ] = useState("")
+    const hair = route.params.cabelo;
+    const type = route.params.fio;
+    const problemHair = route.params.problemHair
+    console.log(problemHair)
 
   const navigation = useNavigation()
     return(
@@ -19,7 +23,7 @@ export default function Skins(){
       <View styles={styles.content}>  
         <Radio 
         selected={selected}
-        options={['Seca', 'Oleosa', 'Mista']} 
+        options={['Seca', 'Oleosa', 'Mista', 'Normal']} 
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);
@@ -32,7 +36,7 @@ export default function Skins(){
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("ProblemSkin")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemSkin", {cabelo: hair, fio: type, problemHair: problemHair, pele: skin})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
 

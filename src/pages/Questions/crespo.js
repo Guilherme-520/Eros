@@ -2,14 +2,15 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView  } from 'react-n
 import React,{useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
-import RadioList from '../../components/RadioList';
+import Radio from '../../components/Radio';
 
-export default function Crespo() {
+export default function Crespo({route}) {
 
 
 
   const [selected, setSelected ] = useState(null)
   const [type, setType ] = useState("")
+  const hair = route.name;
 
   const navigation = useNavigation()
 
@@ -19,9 +20,9 @@ export default function Crespo() {
         <Text style={styles.Question}>Qual seu tipo de cabelo?</Text>
       </View>
       <View styles={styles.content}>  
-        <RadioList 
+        <Radio 
         selected={selected}
-        options={['D1', 'D2', 'D3', 'D4']} 
+        options={['4A', '4B', '4C']} 
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);
@@ -33,7 +34,7 @@ export default function Crespo() {
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("Hair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair", {cabelo: hair, fio: type})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
      

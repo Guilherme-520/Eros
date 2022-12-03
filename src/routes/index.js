@@ -11,6 +11,15 @@ import Ondulado from '../pages/Questions/ondulado';
 import Crespo from '../pages/Questions/crespo';
 import ProblemHair from '../pages/Questions/problemHair';
 import ProblemSkin from '../pages/Questions/problemSkin';
+import Hidratacao from '../pages/tratamentos/hidratacao';
+import Reconstrucao from '../pages/tratamentos/reconstrucao';
+import Nutricao from '../pages/tratamentos/nutricao';
+import HidratacaoLiso from '../pages/tratamentos/hidratacaoLiso';
+import HidratacaoCacheado from '../pages/tratamentos/hidratacaoCacheado';
+import HidratacaoOndulado from '../pages/tratamentos/hidratacaoOndulado';
+import HidratacaoCrespo from '../pages/tratamentos/hidratacaoCrespo';
+import CalendarSkin from '../pages/Home/calendarSkin';
+import Profile from '../pages/Profile';
 
 
 const Stack = createNativeStackNavigator();
@@ -80,6 +89,52 @@ export default function Routes(){
             component={ProblemSkin}
             options={{ headerShown: false}}
             />
+            <Stack.Screen
+            name="Hidratacao"
+            component={Hidratacao}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="Reconstrucao"
+            component={Reconstrucao}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="Nutricao"
+            component={Nutricao}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="HidratacaoLiso"
+            component={HidratacaoLiso}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="HidratacaoOndulado"
+            component={HidratacaoOndulado}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="HidratacaoCacheado"
+            component={HidratacaoCacheado}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="HidratacaoCrespo"
+            component={HidratacaoCrespo}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="CalendarSkin"
+            component={CalendarSkin}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{ headerShown: false}}
+            />
+            
         </Stack.Navigator>
     )
 }

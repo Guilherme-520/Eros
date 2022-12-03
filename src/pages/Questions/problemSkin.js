@@ -3,17 +3,40 @@ import React,{useState} from 'react';
 import Radio from '../../components/Radio';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
+import {addDoc, collection, getFirestore} from 'firebase/firestore';
+import firebase from '../../config/firebaseconfig';
 
-export default function ProblemSkin() {
+export default function ProblemSkin({route}) {
 
 
 
   const [selected, setSelected ] = useState(null)
-  const [type, setType ] = useState("")
+  const [problem, setProblem ] = useState("")
+  const hair = route.params.cabelo;
+  const type = route.params.fio;
+  const problemHair = route.params.problemHair;
+  const skin = route.params.pele;
+  const data = new Date.getime()
+
 
   const navigation = useNavigation()
 
+  const db = getFirestore(firebase);
+
+  async function createData(){
+    await addDoc(collection(db, 'info'),{
+     Cabelo: hair,
+     Fio: type,
+     ProblemaCabelo: problemHair,
+     Pele: skin,
+     ProblemaPele: problem,
+     data: data,
+   });
+   navigation.navigate("Home")
+  }
+
   return (
+    
     <SafeAreaView style={styles.container}>
       <View style={styles.txtBack}>
         <Text style={styles.Question}>Qual problema com sua pele?</Text>
@@ -25,7 +48,7 @@ export default function ProblemSkin() {
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);
-            setType(opt);
+            setProblem(opt);
           
           }}
           />
@@ -33,7 +56,7 @@ export default function ProblemSkin() {
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("Skins")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("Home")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={createData} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
      

@@ -10,24 +10,30 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
-export default function Home() {
+export default function CalendarSkin() {
 
   
-  
+  const auth = getAuth()
 const navigation = useNavigation()
 const tratamentos = {
-  saudavel: ['Hidratação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Hidratação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Reconstrução'],
+  saudavel: ['Limpeza', 'Tônico', 'Hidratação', 'Esfoliação', 'Creme' ],
   danificado: ['Hidratação', 'Nutrição', 'Hidratação', 'Hidtatação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Hidratação', 'Nutrição', 'Reconstrução'],
   destruido: ['Hidratação', 'Nutrição', 'Reconstrução', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Reconstrução', 'Hidratação', 'Hidratação', 'Nutrição'],
 
 }
 
-const [problemHair, setProblemHair] = useState("");
-const [cabelo, setcabelo] = useState("Ondulado");
+const [problemSkin, setProblemSkin] = useState("");
+const [Skin, setSkin] = useState("");
 
 
 
-
+function LogOut(){
+    signOut(auth).then(() => {
+        navigation.navigate("Welcome")
+      }).catch((error) => {
+        console.log(error.message)
+      });
+}
 
 
 function tratamento(trata){
@@ -74,12 +80,12 @@ LocaleConfig.defaultLocale = 'br';
     <View style={styles.container}>
       <View style={styles.Top}>
         <View style={styles.infoTop}>
-          <Text style={styles.txtPage}>Cronograma Capilar</Text>
+          <Text style={styles.txtPage}>SkinCare</Text>
           <TouchableOpacity style={styles.btnAccount} onPress={()=>navigation.navigate('Profile')}><FontAwesome5 name="user-circle" size={35} color="white" /></TouchableOpacity>
         </View>
         <View style={styles.btnTrata}>
           <TouchableOpacity style={styles.btnHair} onPress={()=>navigation.navigate("Home")}><Text style={styles.txtBtnHair}>Cabelo</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.btnSkin}  onPress={()=>navigation.navigate("CalendarSkin")}><Text style={styles.txtBtnSkin}>Pele</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.btnSkin} onPress={()=>navigation.navigate("CalendarSkin")}><Text style={styles.txtBtnSkin}>Pele</Text></TouchableOpacity>
 
         </View>
 
@@ -87,23 +93,23 @@ LocaleConfig.defaultLocale = 'br';
       <Calendar 
       style={styles.calendar}
       markedDates={{
-       '2022-12-01' : {selected: true, selectedColor: '#5142ab'}
+       '2022-12-09' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-10' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-11' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-12' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-13' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-14' : {selected: true, selectedColor: '#5142ab'},
       }}
       />
-      <SafeAreaView style={styles.days}>
-        
-          <ScrollView>
+    
+          <ScrollView style={styles.days}>
             <View>
-
-              
-
-              { tratamentos.saudavel.map((trata)=>
               <View>
+                 <Text style={styles.txtSkin}>Os tratamentos de skincare devem ser feitos diariamente</Text>
+              </View>
+              { tratamentos.saudavel.map((trata)=>
+              <View style={styles.contentTratamento}>
                 <TouchableOpacity style={styles.content} onPress={()=>tratamento(trata)}>
-                  <View style={styles.markDay}>
-                    <Text style={styles.txtDay}>1</Text>
-                  </View>
-                
                 <Text style={styles.tratamento}>{trata}</Text>
               </TouchableOpacity>
               </View>
@@ -111,8 +117,6 @@ LocaleConfig.defaultLocale = 'br';
 
             </View>
           </ScrollView>
-    
-        </SafeAreaView>
        
     </View>
   )
@@ -141,7 +145,7 @@ const styles = StyleSheet.create({
     infoTop:{
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 13,
+      marginBottom: 10,
     },
 
     txtPage:{
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
 
     btnAccount:{
       margin: 8,
-      marginLeft: '20%',
+      marginLeft: '50%',
     },
 
     btnTrata:{
@@ -159,8 +163,6 @@ const styles = StyleSheet.create({
       width: '90%',
       alignItems: 'center',
       justifyContent: 'space-between',
-
-    
     },
 
     btnHair:{
@@ -181,79 +183,48 @@ const styles = StyleSheet.create({
       color: "#fff",
       fontSize: 25,
     },
-
-    
-    contentStart:{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
+    txtSkin:{
+      color: "black",
+      fontSize: 25,
+      marginLeft: 10,
+      textAlign: 'center',
     },
+
+    days:{
+    marginBottom: 15,
+    },
+  
 
     calendar:{
       width: 350,
       borderRadius: 10,
     },
 
-    listContent:{
-      flex: 1,
-    },
-
-    days:{
-      flex: 1,
-      borderTopColor: '#c4c4c4',
-      borderTopWidth: 3,
-      width: "100%",
-    },
 
     content:{
-      flexDirection: 'row',
-      borderColor: '#c4c4c4',
-      borderWidth: 2,
       marginTop: 10,
       marginLeft: 5,
       marginRight: 10,
+      marginBottom: 5,
+      width: '100%',
+      backgroundColor: '#5142ab'
     },
 
-    markDay:{
-      backgroundColor: '#5142ab',
-      height: "100%",
-      width: "15%",
-      paddingRight: 5,
-      textAlign: 'center',
-      borderColor: '#c4c4c4',
-      borderWidth: 1,
-
+    contentTratamento:{
+      flex: 1,
+      alignItems: 'center',
+      width: "100%",
     },
 
-    txtDay:{
-      color: '#fff',
-      fontWeight: 'bold',
-      fontSize: 35,
-      textAlign: 'center'
-    },
+
 
     tratamento:{
       fontSize: 35,
       fontWeight: 'bold',
       marginLeft: 15,
+      color: 'white',
+      textAlign: 'center',
     },
 
 
-    btnStart:{
-        backgroundColor:'#5142ab',
-        alignItems:'center',
-        justifyContent:"center",
-        paddingVertical: 5,
-        paddingHorizontal: 5,
-        width: "50%",
-        borderRadius: 10,
-
-    },
-
-    txtStart:{
-        fontWeight:"700",
-        fontSize: 22,
-        color: '#fff',
-    }
 })

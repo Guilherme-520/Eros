@@ -80,7 +80,7 @@ export default function SignUp() {
      <View style={styles.header}>
       <Text style={styles.txtAny}>Crie sua conta e comece hoje sua mudança!</Text>
      </View>
-     <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'height'} KeyboardVerticalOffset={80} animation='fadeInUp' style={styles.Content}>
+     <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'height'} KeyboardVerticalOffset={100} animation='fadeInUp' style={styles.Content}>
       <ScrollView style={{width: '100%'}}>
               <Input iconName={"user"} placeholder="Nome de Usuario" autoCapitalize onChangeText={(text)=>setName(text)} value={name} />
      <Input iconName={"envelope"} keyboardType="email-address" placeholder="Email" autoCapitalize='none' onChangeText={(text)=>SetEmail(text)} value={email} />

@@ -1,15 +1,16 @@
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView  } from 'react-native';
 import React,{useState} from 'react';
-import RadioList from '../../components/RadioList';
+import Radio from '../../components/Radio';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function Cacheado() {
+export default function Cacheado({route}) {
 
 
 
   const [selected, setSelected ] = useState(null)
   const [type, setType ] = useState("")
+  const hair = route.name;
 
 
 
@@ -21,9 +22,9 @@ export default function Cacheado() {
         <Text style={styles.Question}>Qual seu tipo de cabelo?</Text>
       </View>
       <View styles={styles.content}>  
-        <RadioList 
+      <Radio 
         selected={selected}
-        options={['C1', 'C2', 'C3', 'C4']} 
+        options={['3A', '3B', '3C']} 
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);
@@ -36,7 +37,7 @@ export default function Cacheado() {
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("Hair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair")} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair", {cabelo: hair, fio: type})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
      

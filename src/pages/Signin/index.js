@@ -1,11 +1,11 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/inputs';
 import  { AntDesign } from '@expo/vector-icons';
 
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 import firebase from '../../config/firebaseconfig'
 
 
@@ -38,7 +38,7 @@ const auth = getAuth(firebase)
   const navigation = useNavigation()
   return (
     
-    <KeyboardAvoidingView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity onPress={ () => navigation.navigate('Welcome')}>
       <AntDesign style={styles.iconBack}  name="left" size={26} color='white' />
       </TouchableOpacity>
@@ -55,6 +55,8 @@ const auth = getAuth(firebase)
      </View>
      
      <Animatable.View animation='fadeInUp' style={styles.Content}>
+
+      
      <Input iconName={"envelope"} keyboardType='email-address' placeholder='Email' autoCapitalize="none" onChangeText={(text)=> setEmail(text)} value={email} />
      <Input secureTextEntry placeholder='Senha'autoCapitalize="none" onChangeText={(text)=>setSenha(text)} value={senha} />
 
@@ -73,9 +75,8 @@ const auth = getAuth(firebase)
       </Text>
      </TouchableOpacity>
       }
-
      </Animatable.View>
-    </KeyboardAvoidingView>
+    </View>
     
   )
 }
@@ -97,6 +98,7 @@ image:{
     backgroundColor: "#3a2f78",
     borderBottomLeftRadius: 45,
     borderBottomRightRadius: 45,
+    marginBottom: 28,
   },
   header:{
     alignItems: 'center',

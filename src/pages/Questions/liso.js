@@ -1,29 +1,18 @@
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView  } from 'react-native';
 import React,{useState} from 'react';
-import RadioList from '../../components/RadioList';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
-import { cabeloLiso } from '../../components/data'
-import {addDoc, collection, getFirestore} from 'firebase/firestore';
-import firebase from '../../config/firebaseconfig';
+import Radio from '../../components/Radio';
 
-export default function Liso() {
+export default function Liso({route}) {
 
 
 
   const [selected, setSelected ] = useState(null)
   const [type, setType ] = useState("")
+  const hair = route.name;
 
   const navigation = useNavigation()
-
-  const db = getFirestore(firebase);
-
-  async function next(){
-    await addDoc(collection(db, 'infoHair'),{
-      Grossura: type
-    });
-    navigation.navigate("ProblemHair")
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,22 +20,21 @@ export default function Liso() {
         <Text style={styles.Question}>Qual seu tipo de cabelo?</Text>
       </View>
       <View styles={styles.content}>  
-        <RadioList 
+        <Radio 
         selected={selected}
-        options={['A1', 'A2', 'A3', 'A4']} 
+        options={['1A', '1B', '1C']} 
         onChangeSelected={(opt, index) =>
           {
             setSelected(index);
             setType(opt);
           
           }}
-          
           />
       </View>
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("Hair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={next} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair", {cabelo: hair, fio: type})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
      
