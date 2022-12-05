@@ -16,7 +16,7 @@ export default function HidratacaoOndulado() {
   return (
     <View style={styles.container}>
       <View style={styles.back}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <AntDesign
             style={styles.iconBack}
             name="left"

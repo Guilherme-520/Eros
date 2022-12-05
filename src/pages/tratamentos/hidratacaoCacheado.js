@@ -16,7 +16,7 @@ export default function HidratacaoCacheado() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.back}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <AntDesign
             style={styles.iconBack}
             name="left"

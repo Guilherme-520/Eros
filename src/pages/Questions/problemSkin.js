@@ -16,7 +16,10 @@ export default function ProblemSkin({route}) {
   const type = route.params.fio;
   const problemHair = route.params.problemHair;
   const skin = route.params.pele;
-  const data = new Date.getime()
+  const day = new Date
+  const month = new Date
+  console.log(month.getMonth(), day.getDate())
+
 
 
   const navigation = useNavigation()
@@ -30,7 +33,8 @@ export default function ProblemSkin({route}) {
      ProblemaCabelo: problemHair,
      Pele: skin,
      ProblemaPele: problem,
-     data: data,
+     day: day.getDate(),
+     Month: month.getMonth(),
    });
    navigation.navigate("Home")
   }

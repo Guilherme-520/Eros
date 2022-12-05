@@ -20,6 +20,16 @@ import HidratacaoOndulado from '../pages/tratamentos/hidratacaoOndulado';
 import HidratacaoCrespo from '../pages/tratamentos/hidratacaoCrespo';
 import CalendarSkin from '../pages/Home/calendarSkin';
 import Profile from '../pages/Profile';
+import ProtecaoMistas from '../pages/tratamentos/protecaoMistas';
+import HidratacaoPele from '../pages/tratamentos/hidratacaoPele';
+import Limpeza from '../pages/tratamentos/limpeza';
+import ProtecaoNormais from '../pages/tratamentos/protecaoNormais';
+import ProtecaoOleosas from '../pages/tratamentos/protecaoOleosas';
+import ProtecaoSecas from '../pages/tratamentos/protecaoSecas';
+import MascaraNormais from '../pages/tratamentos/mascaraNormais';
+import MascaraOleosas from '../pages/tratamentos/mascaraOleosas';
+import MascaraSecas from '../pages/tratamentos/mascaraSeca';
+import Esfoliacao from '../pages/tratamentos/esfoliacao';
 
 
 const Stack = createNativeStackNavigator();
@@ -132,6 +142,61 @@ export default function Routes(){
             <Stack.Screen
             name="Profile"
             component={Profile}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="ProtecaoNormais"
+            component={ProtecaoNormais}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="ProtecaoMistas"
+            component={ProtecaoMistas}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="ProtecaoOleosas"
+            component={ProtecaoOleosas}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="ProtecaoSecas"
+            component={ProtecaoSecas}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="Limpeza"
+            component={Limpeza}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="HidratacaoPele"
+            component={HidratacaoPele}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="Esfoliacao"
+            component={Esfoliacao}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="MascaraNormais"
+            component={MascaraNormais}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="MascaraMistas"
+            component={MascaraNormais}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="MascaraSecas"
+            component={MascaraSecas}
+            options={{ headerShown: false}}
+            />
+            <Stack.Screen
+            name="MascaraOleosas"
+            component={MascaraOleosas}
             options={{ headerShown: false}}
             />
             

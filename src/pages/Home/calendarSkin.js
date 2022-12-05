@@ -16,43 +16,41 @@ export default function CalendarSkin() {
   const auth = getAuth()
 const navigation = useNavigation()
 const tratamentos = {
-  saudavel: ['Limpeza', 'Tônico', 'Hidratação', 'Esfoliação', 'Creme' ],
-  danificado: ['Hidratação', 'Nutrição', 'Hidratação', 'Hidtatação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Hidratação', 'Nutrição', 'Reconstrução'],
-  destruido: ['Hidratação', 'Nutrição', 'Reconstrução', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Reconstrução', 'Hidratação', 'Hidratação', 'Nutrição'],
+  saudavel: ['Limpeza', 'Esfoliação', 'Mascara', 'Hidratação', 'Proteção', ],
 
 }
 
 const [problemSkin, setProblemSkin] = useState("");
-const [Skin, setSkin] = useState("");
+const [skin, setSkin] = useState("Mista");
 
 
-
-function LogOut(){
-    signOut(auth).then(() => {
-        navigation.navigate("Welcome")
-      }).catch((error) => {
-        console.log(error.message)
-      });
-}
 
 
 function tratamento(trata){
-  if (trata == "Hidratação" && problemHair == 'Muito danificado') {
-    navigation.navigate('Hidratacao');
-  } else if( trata == "Hidratação" && cabelo == "Liso") {
-    navigation.navigate('HidratacaoLiso');
-  } else if( trata == "Hidratação" && cabelo == "Ondulado") {
-    navigation.navigate('HidratacaoOndulado');
-  } else if( trata == "Hidratação" && cabelo == "Cacheado") {
-    navigation.navigate('HidratacaoCacheado');
-  } else if( trata == "Hidratação" && cabelo == "Crespo") {
-    navigation.navigate('HidratacaoCrespo');
-  } else if( trata == "Reconstrução") {
-    navigation.navigate('Reconstrucao');
-  } else if (trata == "Nutrição") {
-    navigation.navigate("Nutricao")
+  console.log(trata)
+   if( trata == "Limpeza") {
+    navigation.navigate('Limpeza');
+  } else if (trata == "Hidratação") {
+    navigation.navigate('HidratacaoPele');
+  } else if( trata == "Esfoliação") {
+    navigation.navigate('Esfoliacao');
+  } else if( trata == "Mascara" && skin == "Normal") {
+    navigation.navigate('MascaraNormais');
+  } else if( trata == "Mascara" && skin == "Mista") {
+    navigation.navigate('MascaraNormais');
+  } else if( trata == "Mascara" && skin == "Seca") {
+    navigation.navigate('MascaraSecas');
+  } else if( trata == "Mascara" && skin == "Oleosa") {
+    navigation.navigate('MascaraOleosas');
+  } else if (trata == "Proteção" && skin == "Mista") {
+    navigation.navigate("ProtecaoMistas")
+  } else if (trata == "Proteção" && skin == "Seca") {
+    navigation.navigate("ProtecaoSecas")
+  } else if (trata == "Proteção" && skin == "Oleosa") {
+    navigation.navigate("ProtecaoOleosas")
+  } else if (trata == "Proteção" && skin == "Normal") {
+    navigation.navigate('ProtecaoNormais');
   }
-  
 }
 LocaleConfig.locales['br'] = {
   monthNames: [

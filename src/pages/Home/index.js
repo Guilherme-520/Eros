@@ -24,7 +24,9 @@ const tratamentos = {
 
 const [problemHair, setProblemHair] = useState("");
 const [cabelo, setcabelo] = useState("Ondulado");
-
+const day = 3
+const fim = 30
+const total = []
 
 
 
@@ -69,8 +71,22 @@ LocaleConfig.locales['br'] = {
   today: "Hoje"
 };
 LocaleConfig.defaultLocale = 'br';
-  return (
+
+function days() {
+
+  for (let index = day; index < fim; index++) {
     
+     total = [index]
+  }
+  console.log(total)
+  
+}
+
+
+
+
+return (
+  
     <View style={styles.container}>
       <View style={styles.Top}>
         <View style={styles.infoTop}>
@@ -102,6 +118,7 @@ LocaleConfig.defaultLocale = 'br';
                 <TouchableOpacity style={styles.content} onPress={()=>tratamento(trata)}>
                   <View style={styles.markDay}>
                     <Text style={styles.txtDay}>1</Text>
+                    {console.log(total)}
                   </View>
                 
                 <Text style={styles.tratamento}>{trata}</Text>
