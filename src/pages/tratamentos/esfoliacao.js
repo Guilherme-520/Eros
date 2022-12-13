@@ -26,7 +26,7 @@ export default function Esfoliacao() {
         </TouchableOpacity>
       </View>
       <View style={styles.txtBack}>
-        <Text style={styles.Question}>Como fazer a esfoliação pele?</Text>
+        <Text style={styles.Question}>Como fazer a esfoliação de pele?</Text>
       </View>
       <SafeAreaView styles={styles.content}>
         <ScrollView>

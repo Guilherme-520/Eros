@@ -18,7 +18,8 @@ export default function ProblemSkin({route}) {
   const skin = route.params.pele;
   const day = new Date
   const month = new Date
-  console.log(month.getMonth(), day.getDate())
+  const id = route.params.id
+  console.log(id)
 
 
 
@@ -27,7 +28,8 @@ export default function ProblemSkin({route}) {
   const db = getFirestore(firebase);
 
   async function createData(){
-    await addDoc(collection(db, 'info'),{
+    console.log(id)
+    await addDoc(collection(db, id),{
      Cabelo: hair,
      Fio: type,
      ProblemaCabelo: problemHair,
@@ -36,7 +38,7 @@ export default function ProblemSkin({route}) {
      day: day.getDate(),
      Month: month.getMonth(),
    });
-   navigation.navigate("Home")
+   navigation.navigate("Home", {id: id})
   }
 
   return (

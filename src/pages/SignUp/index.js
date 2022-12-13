@@ -29,7 +29,7 @@ export default function SignUp() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigation.navigate("Hair")
+        navigation.navigate("Hair", {id: user.uid})
         // ...
       })
       .catch((error) => {
@@ -37,7 +37,7 @@ export default function SignUp() {
         const errorMessage = error.message;
         console.log(errorMessage);
         console.log(errorCode)
-        // ..
+
       });
     }
     else{
@@ -49,8 +49,7 @@ export default function SignUp() {
 
   async function createUser(){
     await addDoc(collection(db, 'Users'),{
-      name,
-      email,
+      name: name
     });
   }
 

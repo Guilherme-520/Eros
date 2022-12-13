@@ -11,6 +11,7 @@ export default function Liso({route}) {
   const [selected, setSelected ] = useState(null)
   const [type, setType ] = useState("")
   const hair = route.name;
+  const id = route.params.id
 
   const navigation = useNavigation()
 
@@ -34,7 +35,7 @@ export default function Liso({route}) {
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("Hair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair", {cabelo: hair, fio: type})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair", {cabelo: hair, fio: type, id: id})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
      

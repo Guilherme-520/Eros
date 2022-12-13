@@ -1,12 +1,26 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import * as Animatable from 'react-native-animatable';
 import { useNavigation} from '@react-navigation/native'
 
 export default function Welcome() {
 
+  const auth = getAuth();
   const navigation = useNavigation();
+
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        navigation.navigate('Home', {id: uid})
+        // ...
+      } else {
+        return
+      }
+    });
+  },[])
   return (
     <Animatable.View animation="fadeInDown" style={styles.container}>
       

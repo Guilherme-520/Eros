@@ -1,19 +1,18 @@
 import { View, Text,TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import React, {useState} from 'react';
-import { getAuth, signOut } from 'firebase/auth';
+import React, {useEffect, useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5 } from '@expo/vector-icons';
+import {addDoc, collection, getFirestore} from 'firebase/firestore';
+import firebase from '../../config/firebaseconfig';
 
 
 
 
-export default function CalendarSkin() {
+export default function CalendarSkin({route}) {
 
   
-  const auth = getAuth()
 const navigation = useNavigation()
 const tratamentos = {
   saudavel: ['Limpeza', 'Esfoliação', 'Mascara', 'Hidratação', 'Proteção', ],
@@ -22,6 +21,10 @@ const tratamentos = {
 
 const [problemSkin, setProblemSkin] = useState("");
 const [skin, setSkin] = useState("Mista");
+
+const db = getFirestore(firebase)
+console.log(route.params.id)
+console.log(db)
 
 
 
@@ -73,13 +76,18 @@ LocaleConfig.locales['br'] = {
   today: "Hoje"
 };
 LocaleConfig.defaultLocale = 'br';
+
+
+useEffect(()=>{
+  
+}, [])
   return (
     
     <View style={styles.container}>
       <View style={styles.Top}>
         <View style={styles.infoTop}>
           <Text style={styles.txtPage}>SkinCare</Text>
-          <TouchableOpacity style={styles.btnAccount} onPress={()=>navigation.navigate('Profile')}><FontAwesome5 name="user-circle" size={35} color="white" /></TouchableOpacity>
+          <TouchableOpacity style={styles.btnAccount} onPress={()=>navigation.navigate('Profile',{id: id})}><FontAwesome5 name="user-circle" size={35} color="white" /></TouchableOpacity>
         </View>
         <View style={styles.btnTrata}>
           <TouchableOpacity style={styles.btnHair} onPress={()=>navigation.navigate("Home")}><Text style={styles.txtBtnHair}>Cabelo</Text></TouchableOpacity>
@@ -91,12 +99,37 @@ LocaleConfig.defaultLocale = 'br';
       <Calendar 
       style={styles.calendar}
       markedDates={{
-       '2022-12-09' : {selected: true, selectedColor: '#5142ab'},
-       '2022-12-10' : {selected: true, selectedColor: '#5142ab'},
-       '2022-12-11' : {selected: true, selectedColor: '#5142ab'},
        '2022-12-12' : {selected: true, selectedColor: '#5142ab'},
        '2022-12-13' : {selected: true, selectedColor: '#5142ab'},
        '2022-12-14' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-15' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-16' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-17' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-18' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-19' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-20' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-21' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-22' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-23' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-24' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-25' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-26' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-27' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-28' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-29' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-30' : {selected: true, selectedColor: '#5142ab'},
+       '2022-12-31' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-01' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-02' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-03' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-04' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-05' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-06' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-07' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-08' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-09' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-10' : {selected: true, selectedColor: '#5142ab'},
+       '2023-01-11' : {selected: true, selectedColor: '#5142ab'},
       }}
       />
     
