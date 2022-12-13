@@ -11,7 +11,8 @@ export default function Skins({route}){
     const hair = route.params.cabelo;
     const type = route.params.fio;
     const problemHair = route.params.problemHair
-    console.log(problemHair)
+    const id = route.params.id
+    console.log(id)
 
   const navigation = useNavigation()
     return(
@@ -36,7 +37,7 @@ export default function Skins({route}){
       <View style={styles.btns}>
         
         <TouchableOpacity onPress={()=>navigation.navigate("ProblemHair")} style={styles.btnPrevius}><AntDesign name="arrowleft" size={70} color="white" /></TouchableOpacity> 
-        <TouchableOpacity onPress={()=>navigation.navigate("ProblemSkin", {cabelo: hair, fio: type, problemHair: problemHair, pele: skin})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
+        <TouchableOpacity onPress={()=>navigation.navigate("ProblemSkin", {cabelo: hair, fio: type, problemHair: problemHair, pele: skin, id: id})} style={styles.btnNext}><AntDesign name="arrowright" size={70} color="white" /></TouchableOpacity> 
 
       </View>
 

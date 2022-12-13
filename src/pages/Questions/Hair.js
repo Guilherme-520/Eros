@@ -4,7 +4,7 @@ import Radio from '../../components/Radio';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function Hair() {
+export default function Hair({route}) {
 
 
 
@@ -12,23 +12,23 @@ export default function Hair() {
   const [hair, setHair ] = useState("")
 
   const navigation = useNavigation()
-
+  const id = route.params.id
 
   
 
   function next(){
-    console.log(hair)
+    console.log(id)
     if(hair === "Liso"){
-      navigation.navigate("Liso", {cabelo: hair})
+      navigation.navigate("Liso", {cabelo: hair, id: id})
     }
      else if(hair === "Ondulado"){
-      navigation.navigate("Ondulado", {cabelo: hair})
+      navigation.navigate("Ondulado", {cabelo: hair, id: id})
     }
     else if(hair === "Cacheado"){
-      navigation.navigate("Cacheado", {cabelo: hair})
+      navigation.navigate("Cacheado", {cabelo: hair, id: id})
     }
     else if(hair === "Crespo"){
-      navigation.navigate("Crespo", {cabelo: hair})
+      navigation.navigate("Crespo", {cabelo: hair, id: id})
     }
   }
 

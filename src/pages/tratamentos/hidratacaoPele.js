@@ -26,7 +26,7 @@ export default function HidratacaoPele() {
         </TouchableOpacity>
       </View>
       <View style={styles.txtBack}>
-        <Text style={styles.Question}>Como fazer a hidratar pele?</Text>
+        <Text style={styles.Question}>Como fazer a hidratação de pele?</Text>
       </View>
       <SafeAreaView styles={styles.content}>
         <ScrollView>

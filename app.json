@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#5142ab"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,11 +23,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#5142ab"
+      },
+      "package": "com.eros.eros"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "af4ed4af-27cc-40a9-883d-2ae892e5e08c"
+      }
     }
   }
 }
