@@ -22,7 +22,7 @@ export default function Profile({route}) {
   const auth = getAuth(firebase);
   const db = getFirestore(firebase);
   const id = route.params.id
-  console.log(id)
+  console.log(id);
   const [nome, setNome] = useState("Guilherme");
   const [hair, setHair] = useState("Ondulado");
   const [skin, setSkin] = useState("Mista");

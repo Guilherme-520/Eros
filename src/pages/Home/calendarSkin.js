@@ -90,8 +90,8 @@ useEffect(()=>{
           <TouchableOpacity style={styles.btnAccount} onPress={()=>navigation.navigate('Profile',{id: id})}><FontAwesome5 name="user-circle" size={35} color="white" /></TouchableOpacity>
         </View>
         <View style={styles.btnTrata}>
-          <TouchableOpacity style={styles.btnHair} onPress={()=>navigation.navigate("Home")}><Text style={styles.txtBtnHair}>Cabelo</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.btnSkin} onPress={()=>navigation.navigate("CalendarSkin")}><Text style={styles.txtBtnSkin}>Pele</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.btnHair} onPress={()=>navigation.navigate("Home", {id: id})}><Text style={styles.txtBtnHair}>Cabelo</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.btnSkin} onPress={()=>navigation.navigate("CalendarSkin", {id: id})}><Text style={styles.txtBtnSkin}>Pele</Text></TouchableOpacity>
 
         </View>
 

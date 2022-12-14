@@ -22,7 +22,6 @@ const tratamentos = {
 
 }
 
-const [problemHair, setProblemHair] = useState("");
 const [cabelo, setcabelo] = useState("Ondulado");
 const [day, setDay] = useState(1);
 const dano = "Não muito danificado";
