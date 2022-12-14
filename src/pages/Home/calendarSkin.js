@@ -23,7 +23,7 @@ const [problemSkin, setProblemSkin] = useState("");
 const [skin, setSkin] = useState("Mista");
 
 const db = getFirestore(firebase)
-console.log(route.params.id)
+const id = route.params.id
 console.log(db)
 
 

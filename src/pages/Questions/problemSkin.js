@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 import Radio from '../../components/Radio';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
-import {addDoc, collection, getFirestore} from 'firebase/firestore';
+import {setDoc, collection, doc, getFirestore} from 'firebase/firestore';
 import firebase from '../../config/firebaseconfig';
 
 export default function ProblemSkin({route}) {
@@ -29,7 +29,7 @@ export default function ProblemSkin({route}) {
 
   async function createData(){
     console.log(id)
-    await addDoc(collection(db, id),{
+    await setDoc(doc(db, "Info", id),{
      Cabelo: hair,
      Fio: type,
      ProblemaCabelo: problemHair,

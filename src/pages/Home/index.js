@@ -6,8 +6,8 @@ import { Calendar } from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5 } from '@expo/vector-icons';
-
-
+import { firebase } from '../../config/firebaseconfig';
+import { doc,  getFirestore, getDoc, query } from 'firebase/firestore';
 
 
 export default function Home({route}) {
@@ -17,7 +17,7 @@ export default function Home({route}) {
 const navigation = useNavigation()
 const tratamentos = {
   saudavel: ['Hidratação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Hidratação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Reconstrução'],
-  danificado: ['Hidratação', 'Nutrição', 'Hidratação', 'Hidtatação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Hidratação', 'Nutrição', 'Reconstrução'],
+  danificado: ['Hidratação', 'Nutrição', 'Hidratação', 'Hidratação', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Hidratação', 'Nutrição', 'Reconstrução'],
   destruido: ['Hidratação', 'Nutrição', 'Reconstrução', 'Nutrição', 'Hidratação', 'Nutrição', 'Hidratação', 'Nutrição', 'Reconstrução', 'Hidratação', 'Hidratação', 'Nutrição'],
 
 }
@@ -28,17 +28,31 @@ const dano = "Não muito danificado";
 const fim = 30;
 const total = ['12', '14', '16', '18', '20', '22', '24', '26', '28', '30', '01', '03'];
 const id = route.params.id;
-console.log(route.params.id)
+const [data, setData] = useState();
 
+const db = getFirestore(firebase)
 
+//const ref = db.firestore().collection(id)
+async function getData(){
+  const docSnap = await getDoc(doc(db,'info', "teste")).then(docSnap => {
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      console.log("No such document!");
+    }
+  })
+ 
 
+}
 
+useEffect( ()=>{
 
-useEffect((()=>{
-}), [])
+  getData()
+    
+}, [])
 
 function tratamento(trata){
-  if (trata == "Hidratação" && problemHair == 'Muito danificado') {
+  if (trata == "Hidratação" && dano == 'Muito danificado') {
     navigation.navigate('Hidratacao');
   } else if( trata == "Hidratação" && cabelo == "Liso") {
     navigation.navigate('HidratacaoLiso');
